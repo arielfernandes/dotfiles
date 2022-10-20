@@ -1,0 +1,6 @@
+2022/10/20-15:58:17.912 902e Reusing MANIFEST /home/eax/.config/BraveSoftware/Brave-Browser/Default/IndexedDB/https_mail.google.com_0.indexeddb.leveldb/MANIFEST-000001
+2022/10/20-15:58:17.912 902e Recovering log #43
+2022/10/20-15:58:17.914 902e Reusing old log /home/eax/.config/BraveSoftware/Brave-Browser/Default/IndexedDB/https_mail.google.com_0.indexeddb.leveldb/000043.log 
+2022/10/20-15:59:15.951 90ef Level-0 table #48: started
+2022/10/20-15:59:16.013 90ef Level-0 table #48: 2010264 bytes OK
+2022/10/20-15:59:16.018 90ef Delete type=0 #43

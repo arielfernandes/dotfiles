@@ -1,0 +1,68 @@
+{
+   "checksum": "0428a2b20c4110549f9660ccfa9bb0b4",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13310420126377389",
+            "date_last_used": "0",
+            "guid": "8701c11c-3e28-423f-86f5-0e5e040c690b",
+            "id": "5",
+            "name": "Sam's SearXNG",
+            "type": "url",
+            "url": "https://search.sapti.me/"
+         }, {
+            "date_added": "13310420306043985",
+            "date_last_used": "0",
+            "guid": "0f6da236-77f4-4605-8ab6-3f8f222780da",
+            "id": "6",
+            "name": "DuckDuckGo — Privacy, simplified.",
+            "type": "url",
+            "url": "https://duckduckgo.com/"
+         }, {
+            "date_added": "13310421772321300",
+            "date_last_used": "0",
+            "guid": "1bafd7a1-11e1-4fe2-821d-235e40f72a89",
+            "id": "7",
+            "name": "SearXNG and searx instances",
+            "type": "url",
+            "url": "https://searx.space/"
+         }, {
+            "date_added": "13310570872438579",
+            "date_last_used": "0",
+            "guid": "c24cbd6c-f7aa-451e-a68f-82ba559bf3c8",
+            "id": "8",
+            "name": "Convert curl commands to code",
+            "type": "url",
+            "url": "https://curlconverter.com/"
+         } ],
+         "date_added": "13310342553912101",
+         "date_last_used": "0",
+         "date_modified": "13310570872438579",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "Bookmarks",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13310342553912137",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "2",
+         "name": "Other bookmarks",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13310342553912141",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "3",
+         "name": "Mobile bookmarks",
+         "type": "folder"
+      }
+   },
+   "version": 1
+}

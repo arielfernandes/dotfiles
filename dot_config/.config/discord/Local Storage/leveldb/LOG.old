@@ -1,0 +1,12 @@
+2022/10/19-07:34:17.450 655 Reusing MANIFEST /home/eax/.config/discord/Local Storage/leveldb/MANIFEST-000001
+2022/10/19-07:34:17.450 655 Recovering log #50
+2022/10/19-07:34:17.451 655 Reusing old log /home/eax/.config/discord/Local Storage/leveldb/000050.log 
+2022/10/19-09:06:18.457 667 Level-0 table #55: started
+2022/10/19-09:06:18.461 667 Level-0 table #55: 7973 bytes OK
+2022/10/19-09:06:18.463 667 Delete type=0 #50
+2022/10/19-10:51:18.457 358b Level-0 table #57: started
+2022/10/19-10:51:18.459 358b Level-0 table #57: 8120 bytes OK
+2022/10/19-10:51:18.461 358b Delete type=0 #54
+2022/10/19-11:36:18.456 358b Level-0 table #59: started
+2022/10/19-11:36:18.476 358b Level-0 table #59: 1144176 bytes OK
+2022/10/19-11:36:18.478 358b Delete type=0 #56

@@ -1,0 +1,16 @@
+2022/10/13-09:29:18.364 5743 Creating DB /home/eax/.config/BraveSoftware/Brave-Browser/Default/IndexedDB/https_kb.printerlogic.com_0.indexeddb.leveldb since it was missing.
+2022/10/13-09:29:18.368 5743 Reusing MANIFEST /home/eax/.config/BraveSoftware/Brave-Browser/Default/IndexedDB/https_kb.printerlogic.com_0.indexeddb.leveldb/MANIFEST-000001
+2022/10/13-09:29:21.334 5745 Manual compaction at level-0 from '\x00\x09\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x0a\x00\x00\x00' @ 0 : 0; will stop at (end)
+2022/10/13-09:33:09.845 5744 Level-0 table #5: started
+2022/10/13-09:33:09.876 5744 Level-0 table #5: 1241520 bytes OK
+2022/10/13-09:33:09.879 5744 Delete type=0 #3
+2022/10/13-09:33:09.909 5744 Level-0 table #7: started
+2022/10/13-09:33:09.932 5744 Level-0 table #7: 1142359 bytes OK
+2022/10/13-09:33:09.934 5744 Delete type=0 #4
+2022/10/13-09:33:09.940 5744 Compacting 1@1 + 1@2 files
+2022/10/13-09:33:10.029 5744 Generated table #8@1: 3086 keys, 2131652 bytes
+2022/10/13-09:33:10.041 5744 Generated table #9@1: 1363 keys, 224463 bytes
+2022/10/13-09:33:10.041 5744 Compacted 1@1 + 1@2 files => 2356115 bytes
+2022/10/13-09:33:10.043 5744 compacted to: files[ 0 0 2 0 0 0 0 ]
+2022/10/13-09:33:10.043 5744 Delete type=2 #7
+2022/10/13-09:33:10.043 5744 Delete type=2 #5

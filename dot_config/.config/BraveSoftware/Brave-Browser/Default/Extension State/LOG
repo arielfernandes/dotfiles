@@ -1,0 +1,18 @@
+2022/10/19-07:37:29.079 e1b Reusing MANIFEST /home/eax/.config/BraveSoftware/Brave-Browser/Default/Extension State/MANIFEST-000001
+2022/10/19-07:37:29.079 e1b Recovering log #36
+2022/10/19-07:37:29.080 e1b Reusing old log /home/eax/.config/BraveSoftware/Brave-Browser/Default/Extension State/000036.log 
+2022/10/19-17:51:16.173 4832 Level-0 table #40: started
+2022/10/19-17:51:16.202 4832 Level-0 table #40: 2125098 bytes OK
+2022/10/19-17:51:16.205 4832 Delete type=0 #36
+2022/10/19-17:51:16.206 4832 Compacting 4@0 + 1@1 files
+2022/10/19-17:51:16.242 4832 Generated table #41@0: 2 keys, 4017 bytes
+2022/10/19-17:51:16.242 4832 Compacted 4@0 + 1@1 files => 4017 bytes
+2022/10/19-17:51:16.244 4832 compacted to: files[ 0 1 1 0 0 0 0 ]
+2022/10/19-17:51:16.244 4832 Delete type=2 #40
+2022/10/19-17:51:16.244 4832 Delete type=2 #32
+2022/10/19-17:51:16.244 4832 Delete type=2 #34
+2022/10/19-17:51:16.244 4832 Delete type=2 #30
+2022/10/19-17:51:16.244 4832 Delete type=2 #37
+2022/10/20-16:18:06.110 9753 Level-0 table #43: started
+2022/10/20-16:18:06.184 9753 Level-0 table #43: 2119984 bytes OK
+2022/10/20-16:18:06.188 9753 Delete type=0 #39

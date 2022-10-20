@@ -1,0 +1,6 @@
+2022/10/16-15:04:12.088 18c6 Creating DB /home/eax/.config/BraveSoftware/Brave-Browser/Default/IndexedDB/https_whereby.com_0.indexeddb.leveldb since it was missing.
+2022/10/16-15:04:12.093 18c6 Reusing MANIFEST /home/eax/.config/BraveSoftware/Brave-Browser/Default/IndexedDB/https_whereby.com_0.indexeddb.leveldb/MANIFEST-000001
+2022/10/16-20:01:49.933 a13f Level-0 table #5: started
+2022/10/16-20:01:49.937 a13f Level-0 table #5: 41329 bytes OK
+2022/10/16-20:01:49.939 a13f Delete type=0 #3
+2022/10/16-20:01:49.940 a13f Manual compaction at level-0 from (begin) .. (end); will stop at (end)

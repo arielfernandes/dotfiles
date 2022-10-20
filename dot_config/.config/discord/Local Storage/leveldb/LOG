@@ -1,0 +1,24 @@
+2022/10/20-07:07:06.046 50c9 Reusing MANIFEST /home/eax/.config/discord/Local Storage/leveldb/MANIFEST-000001
+2022/10/20-07:07:06.050 50c9 Recovering log #58
+2022/10/20-07:07:06.052 50c9 Reusing old log /home/eax/.config/discord/Local Storage/leveldb/000058.log 
+2022/10/20-07:09:12.250 50c7 Level-0 table #62: started
+2022/10/20-07:09:12.262 50c7 Level-0 table #62: 1148619 bytes OK
+2022/10/20-07:09:12.264 50c7 Delete type=0 #58
+2022/10/20-07:09:12.265 50c7 Compacting 4@0 + 1@1 files
+2022/10/20-07:09:12.275 50c7 Generated table #63@0: 98 keys, 1156531 bytes
+2022/10/20-07:09:12.275 50c7 Compacted 4@0 + 1@1 files => 1156531 bytes
+2022/10/20-07:09:12.277 50c7 compacted to: files[ 0 1 1 0 0 0 0 ]
+2022/10/20-07:09:12.277 50c7 Delete type=2 #62
+2022/10/20-07:09:12.277 50c7 Delete type=2 #52
+2022/10/20-07:09:12.277 50c7 Delete type=2 #55
+2022/10/20-07:09:12.277 50c7 Delete type=2 #57
+2022/10/20-07:09:12.277 50c7 Delete type=2 #59
+2022/10/20-08:56:12.250 50c7 Level-0 table #65: started
+2022/10/20-08:56:12.254 50c7 Level-0 table #65: 8847 bytes OK
+2022/10/20-08:56:12.256 50c7 Delete type=0 #61
+2022/10/20-10:39:12.250 827c Level-0 table #67: started
+2022/10/20-10:39:12.271 827c Level-0 table #67: 8617 bytes OK
+2022/10/20-10:39:12.273 827c Delete type=0 #64
+2022/10/20-11:09:12.249 827c Level-0 table #69: started
+2022/10/20-11:09:12.265 827c Level-0 table #69: 1143422 bytes OK
+2022/10/20-11:09:12.267 827c Delete type=0 #66
