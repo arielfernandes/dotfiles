@@ -1,2 +1,27 @@
+# ~/.zshrc
+
+# Carrega o Antidote
 source /usr/share/zsh-antidote/antidote.zsh
-alias vim=nvim
+source ~/.zsh/keys.zsh
+antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
+source ~/.zsh_plugins.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Configurações do fzf (não precisa mais do source manual)
+export FZF_DEFAULT_OPTS="
+  --height 40%
+  --layout=reverse
+  --border
+  --color=fg:#d0d0d0,hl:#5fafff,fg+:white,hl+:white
+"
+
+# Use 'fd' para busca rápida
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
+# Alias para Doom Emacs
+if [ -f "$HOME/.emacs.d/bin/doom" ]; then
+    alias doom="$HOME/.emacs.d/bin/doom"
+fi
+
+# Força o reconhecimento do widget do fzf (adicione apenas se o erro persistir)
+zle -N fzf-history-widget

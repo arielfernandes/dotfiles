@@ -1,0 +1,20 @@
+
+#junegunn/fzf
+
+zsh-users/zsh-autosuggestions
+#sindresorhus/pure
+
+mafredri/zsh-async
+woefe/git-prompt.zsh
+zsh-users/zsh-completions path:src kind:fpath
+zdharma-continuum/fast-syntax-highlighting
+chriskempson/base16-shell
+zsh-users/zsh-history-substring-search
+docker/cli path:contrib/completion/zsh kind:fpath
+skywind3000/z.lua
+#nix-community/nix-zsh-completions.git kind:fpath
+
+spaceship-prompt/spaceship-prompt
+#zimfw/sorin
+
+zsh-users/zsh-syntax-highlighting
