@@ -1,0 +1,75 @@
+[theme]
+theme = "semi-native"
+
+[icons]
+icons = "awesome4"
+
+[[block]]
+block = "disk_space"
+path = "/"
+info_type = "available"
+alert_unit = "GB"
+interval = 20
+warning = 20.0
+alert = 10.0
+format = " $icon root: $available.eng(w:2) "
+
+[[block]]
+block = "memory"
+format = " $icon $mem_total_used_percents.eng(w:2) "
+format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
+
+[[block]]
+block = "cpu"
+interval = 1
+
+[[block]]
+block = "load"
+interval = 1
+format = " $icon  1min avg: $1m.eng(w:4) "
+
+[[block]]
+block = "temperature"
+format = " $icon $max max "
+format_alt = " $icon $min min, $max max, $average avg "
+interval = 10
+chip = "k10temp-pci-00c3"
+
+[[block]]
+block = "sound"
+
+#{{- if .laptop_mode }}
+[[block]]
+block = "backlight"
+#{{- end }}
+
+[[block]]
+block = "github"
+format = " $icon $total.eng(w:1) "
+info = ["total"]
+warning = ["mention","review_requested"]
+hide_if_total_is_zero = true
+
+[[block]]
+block = "maildir"
+interval = 60
+inboxes = ["/home/{{ .maildir }}/personal", "{{ .maildir}}/personal/inbox"]
+threshold_warning = 1
+threshold_critical = 10
+display_type = "new"
+
+#{{- if .laptop_mode }}
+[[block]]
+block = "battery"
+format = " $percentage {$time_remaining.dur(hms:true, min_unit:m) |}"
+device = "DisplayDevice"
+driver = "upower"
+#{{- end }}
+
+[[block]]
+block = "time"
+interval = 60
+[block.format]
+full = " $icon $timestamp.datetime(f:'%a %Y-%m-%d %R ', l:pt_BR) "
+short = " $icon $timestamp.datetime(f:%R) "
+
