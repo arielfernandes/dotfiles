@@ -2,7 +2,12 @@
 
 # Carrega o Antidote
 source /usr/share/zsh-antidote/antidote.zsh
+
+source ~/.zsh/init.zsh
 source ~/.zsh/keys.zsh
+
+
+
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 source ~/.zsh_plugins.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -21,6 +26,18 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 # Alias para Doom Emacs
 if [ -f "$HOME/.emacs.d/bin/doom" ]; then
     alias doom="$HOME/.emacs.d/bin/doom"
+fi
+
+
+autoload -Uz compinit
+compinit
+
+if [ -f "$HOME/zsh_plugins.txt" ]; then
+  while IFS= read -r plugin; do
+    if [[ ! "$plugin" =~ ^# ]]; then
+      antidote bundle "$plugin"
+    fi
+  done < "$HOME/zsh_plugins.txt"
 fi
 
 # Força o reconhecimento do widget do fzf (adicione apenas se o erro persistir)
