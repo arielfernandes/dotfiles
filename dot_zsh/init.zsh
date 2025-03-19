@@ -1,4 +1,23 @@
 # General init file
+# Configurações de histórico
+HISTSIZE=10000                  # Número de comandos no histórico da memória
+SAVEHIST=10000                  # Número de comandos a salvar no arquivo de histórico
+HISTFILE=~/.zsh_history          # Caminho do arquivo de histórico
+
+# Escrever o histórico no arquivo imediatamente
+setopt INC_APPEND_HISTORY        # Aplica o histórico imediatamente
+setopt SHARE_HISTORY             # Compartilha o histórico entre múltiplos terminais
+setopt HIST_IGNORE_ALL_DUPS     # Ignora duplicatas no histórico
+setopt HIST_FIND_NO_DUPS        # Não mostra duplicatas ao buscar
+setopt HIST_REDUCE_BLANKS      # Remove espaços em branco no início e fim dos comandos
+setopt HIST_IGNORE_SPACE       # Ignora comandos que começam com um espaço
+setopt HIST_EXPIRE_DUPS_FIRST  # Exclui duplicatas primeiro ao salvar o histórico
+
+# Previne o histórico de ser truncado quando o terminal é fechado
+setopt APPEND_HISTORY           # Garante que o histórico será apenas adicionado, não sobrescrito
+
+# Configura a frequência de gravação do histórico
+export HIST_STAMPS="yyyy-mm-dd"
 
 setopt autocd
 setopt extendedglob

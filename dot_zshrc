@@ -5,7 +5,7 @@ source /usr/share/zsh-antidote/antidote.zsh
 
 source ~/.zsh/init.zsh
 source ~/.zsh/keys.zsh
-
+source ~/.zsh/zprofile
 
 
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
@@ -22,6 +22,7 @@ export FZF_DEFAULT_OPTS="
 
 # Use 'fd' para busca rápida
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
 
 # Alias para Doom Emacs
 if [ -f "$HOME/.emacs.d/bin/doom" ]; then
@@ -42,3 +43,7 @@ fi
 
 # Força o reconhecimento do widget do fzf (adicione apenas se o erro persistir)
 zle -N fzf-history-widget
+
+export PATH="$HOME/.local/bin:$PATH"
+export PATH=$PATH:/opt/SimulIDE_1.1.0-SR1_Lin64/simulide
+
