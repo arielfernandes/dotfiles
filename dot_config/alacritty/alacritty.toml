@@ -5,6 +5,9 @@ import = [
 [font]
 size = 10
 
+[font.normal]
+family = "Hack Nerd Font"
+
 [font.bold]
 family = "Hack Nerd Font"
 style = "Bold"
@@ -16,9 +19,6 @@ y = 0
 [font.italic]
 family = "Hack Nerd Font"
 style = "Italic"
-
-[font.normal]
-family = "Hack Nerd Font"
 
 [font.offset]
 x = 0

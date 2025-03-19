@@ -45,6 +45,7 @@ block = "backlight"
 
 [[block]]
 block = "github"
+token = ""
 format = " $icon $total.eng(w:1) "
 info = ["total"]
 warning = ["mention","review_requested"]
