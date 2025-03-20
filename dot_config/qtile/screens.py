@@ -43,9 +43,9 @@ screens = [
                      highlight_color = GruvboxDark[2],
                      highlight_method = "line",
                      this_current_screen_border = GruvboxDark[7],
-                     this_screen_border = GruvboxDark[4],
+                     this_screen_border = GruvboxDark[9],
                      other_current_screen_border = GruvboxDark[7],
-                     other_screen_border = GruvboxDark[4],
+                     other_screen_border = GruvboxDark[6],
                     ),
 
                 widget.WidgetBox(
@@ -160,7 +160,7 @@ screens = [
                     foreground = GruvboxDark[1],
                     scale=0.8,
                     background = colors[6],
-                    padding = 8
+                    padding = 6
 
                     ),
                 widget.QuickExit(default_text='⏻', countdown_format='[{}]', padding=6),
