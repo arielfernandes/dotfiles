@@ -1,4 +1,4 @@
-from libqtile import layout
+from libqtile import layout, hook
 from libqtile.config import Click, Drag, Group, Key, Match
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal

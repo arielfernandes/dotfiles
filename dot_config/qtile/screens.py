@@ -4,6 +4,8 @@ from libqtile.config import Screen
 from colors import GruvboxDark
 
 colors = GruvboxDark
+myTerm = "alacritty"      # My terminal of choice
+
 
 widget_defaults = dict(
     font="hack nerd font",
@@ -19,17 +21,15 @@ screens = [
         top=bar.Bar(
             [
 
+                widget.Spacer(length = 6),
              widget.Image(
-                 filename = "~/.config/qtile/icons/infinity-icon.png",
+                 filename = "~/.config/qtile/icons/arch.png",
                  scale = "False",
                  mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)},
+                 padding = 3,
                  ),
 
-                widget.CurrentLayout(
-                    foreground = GruvboxDark[1],
-                    padding = 6,
-                    ),
-                widget.Spacer(length = 2),
+                widget.Spacer(length = 8),
                 widget.GroupBox(
                      fontsize = 12,
                      margin_y = 5,
@@ -70,7 +70,7 @@ screens = [
                                 background=colors[9],
                                 foreground = colors[1],
                                  padding = 6, 
-                                 mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
+                                 mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
                                  format = '{MemUsed: .0f}{mm}',
                                  fmt = '🖥  Mem: {} used',
                                  ),
@@ -78,6 +78,7 @@ screens = [
                             foreground = colors[1],
                             background=colors[9],
                                    ),
+
                         widget.DF(
 
                                 background=colors[9],
@@ -111,9 +112,7 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                #widget.TextBox("default config", name="default"),
-                #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+
                 widget.GenPollText(
                     update_interval = 300,
                     func = lambda: subprocess.check_output("printf $(uname -r)", shell=True, text=True),
@@ -121,23 +120,27 @@ screens = [
                     padding = 6,
                     fmt = '❤  {}',
                 ),
-                    widget.Cmus(),
+
+                
                 widget.KeyboardLayout(
                     configured_keyboards=['br'],
                     foreground = GruvboxDark[8],
                     padding = 6,
                     fmt = '⌨  Kbd: {}',
                 ),
+                widget.Sep(padding=20),
                 widget.Volume(
                     foreground = GruvboxDark[9],
                     padding = 6,
                     fmt = '🕫  Vol: {}',
                     ),
+                widget.Sep(padding = 20),
                 widget.Clock(
-                    foreground = GruvboxDark[3],
+                    foreground = GruvboxDark[6],
                     padding = 6, 
                     format = "⏱  %a, %b %d - %H:%M",
                  ),
+                widget.Sep(padding = 20),
                     widget.Battery(
                          format="{char} {percent:2.0%} ({hour:d}:{min:02d})",
                     charge_char="",
@@ -151,7 +154,17 @@ screens = [
                         ),
 
                 widget.Systray(padding = 3),
-                widget.QuickExit(),
+
+
+                widget.CurrentLayoutIcon(
+                    foreground = GruvboxDark[1],
+                    scale=0.8,
+                    background = colors[6],
+                    padding = 8
+
+                    ),
+                widget.QuickExit(default_text='⏻', countdown_format='[{}]', padding=6),
+                widget.Spacer(length = 6),
             ],
             24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
