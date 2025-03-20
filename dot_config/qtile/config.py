@@ -58,6 +58,7 @@ keys = [
     Key([mod], "d", lazy.spawn(f"rofi -show drun -show-icons"), desc="Spawn rofi launcher"),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle full screen"),
     Key([mod, "control"], "x", lazy.spawn(f"sh {personal_bin}/lock.sh"), desc="Lock screen"),
+    Key([mod, "control"], "p", lazy.spawn(f"sh {personal_bin}/power-menu.sh"), desc="Power menu screen"),
 
 
 ]
@@ -128,11 +129,14 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
+        Match(wm_class='yad'),  # Yad será flutuante
+
     ]
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
+
 
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?

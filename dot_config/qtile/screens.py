@@ -2,9 +2,12 @@ import webbrowser
 from libqtile import bar, widget, hook, qtile
 from libqtile.config import Screen
 from colors import GruvboxDark
+import pathlib
 
 colors = GruvboxDark
-myTerm = "alacritty"      # My terminal of choice
+myTerm = "pcmanfm"      # My terminal of choice
+personal_bin = str(pathlib.Path().home().joinpath(".bin"))
+power_menu_sh = f"sh {personal_bin}/power-menu.sh"
 
 
 widget_defaults = dict(
@@ -124,23 +127,35 @@ screens = [
                 
                 widget.KeyboardLayout(
                     configured_keyboards=['br'],
-                    foreground = GruvboxDark[8],
+                    #background = colors[2],
+                    foreground = colors[6],
                     padding = 6,
                     fmt = '⌨  Kbd: {}',
                 ),
-                widget.Sep(padding=20),
+                widget.Sep(
+                        padding=20,
+                        #background = colors[2]
+                        ),
                 widget.Volume(
-                    foreground = GruvboxDark[9],
+                    #background = colors[2],
+                    foreground = colors[6],
                     padding = 6,
                     fmt = '🕫  Vol: {}',
                     ),
-                widget.Sep(padding = 20),
+                widget.Sep(
+                        padding=20, 
+                        #background = colors[2]
+                        ),
                 widget.Clock(
-                    foreground = GruvboxDark[6],
+                    #background = colors[2],
+                    foreground = colors[6],
                     padding = 6, 
                     format = "⏱  %a, %b %d - %H:%M",
                  ),
-                widget.Sep(padding = 20),
+                widget.Sep(
+                        padding=20,
+                        #background = colors[2]
+                        ),
                     widget.Battery(
                          format="{char} {percent:2.0%} ({hour:d}:{min:02d})",
                     charge_char="",
@@ -150,12 +165,21 @@ screens = [
                     unknown_char="",
                     update_interval=60,
                     show_short_text=False,
-                    foreground=colors[7],
+                    #background = colors[2],
+                    foreground=colors[6],
+                    ),
+
+
+                widget.Systray(
+                        padding = 4,
+                        #background=colors[2]
                         ),
 
-                widget.Systray(padding = 3),
 
-
+                widget.Spacer(
+                        length = 6,
+                        #background=colors[2]
+                        ),
                 widget.CurrentLayoutIcon(
                     foreground = GruvboxDark[1],
                     scale=0.8,
@@ -163,8 +187,19 @@ screens = [
                     padding = 6
 
                     ),
-                widget.QuickExit(default_text='⏻', countdown_format='[{}]', padding=6),
-                widget.Spacer(length = 6),
+                widget.Spacer(length=6),
+               widget.Image(
+                 filename = "~/.config/qtile/icons/on-off.png",
+                 scale = "False",
+                 mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(power_menu_sh)},
+                 padding = 6,
+                 ),
+
+
+                widget.Spacer(
+                    length = 6, 
+                    #background=colors[2]
+                    ),
             ],
             24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders

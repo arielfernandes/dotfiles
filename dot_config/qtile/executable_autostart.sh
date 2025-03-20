@@ -2,3 +2,4 @@
 
 picom --daemon &
 nm-applet &
+bluetooth-applet &
