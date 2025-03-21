@@ -3,9 +3,10 @@ from libqtile import bar, widget, hook, qtile
 from libqtile.config import Screen
 from colors import GruvboxDark
 import pathlib
+import subprocess
 
 colors = GruvboxDark
-myTerm = "pcmanfm"      # My terminal of choice
+myTerm = "pcmanfm"
 personal_bin = str(pathlib.Path().home().joinpath(".bin"))
 power_menu_sh = f"sh {personal_bin}/power-menu.sh"
 
@@ -25,30 +26,30 @@ screens = [
             [
 
                 widget.Spacer(length = 6),
-             widget.Image(
-                 filename = "~/.config/qtile/icons/arch.png",
-                 scale = "False",
-                 mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)},
-                 padding = 3,
-                 ),
+                 widget.Image(
+                     filename = "~/.config/qtile/icons/arch.png",
+                     scale = "False",
+                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)},
+                     padding = 3,
+                     ),
 
                 widget.Spacer(length = 8),
                 widget.GroupBox(
-                     fontsize = 12,
+                     fontsize = 14,
                      margin_y = 5,
                      margin_x = 8,
                      padding_y = 0,
                      padding_x = 1,
                      borderwidth = 3,
-                     active = GruvboxDark[8],
-                     inactive = GruvboxDark[9],
+                     active = colors[8],
+                     inactive = colors[9],
                      rounded = False,
-                     highlight_color = GruvboxDark[2],
+                     highlight_color = colors[2],
                      highlight_method = "line",
-                     this_current_screen_border = GruvboxDark[7],
-                     this_screen_border = GruvboxDark[9],
-                     other_current_screen_border = GruvboxDark[7],
-                     other_screen_border = GruvboxDark[6],
+                     this_current_screen_border = colors[7],
+                     this_screen_border = colors[9],
+                     other_current_screen_border = colors[7],
+                     other_screen_border = colors[6],
                     ),
 
                 widget.WidgetBox(
@@ -58,31 +59,31 @@ screens = [
                         foreground = colors[9],
                         widgets = [
                         
-                                widget.Sep(),
-                        widget.CPU(
-                            background=colors[9],
-                             format = ' Cpu: {load_percent}%',
-                            foreground = colors[1],
-                             padding = 6, 
-                             ),
-                        widget.Sep( 
-                            foreground = colors[1],
-                            background=colors[9],
-                                   ),
-                        widget.Memory(
+                            widget.Sep(),
+                            widget.CPU(
                                 background=colors[9],
+                                 format = ' Cpu: {load_percent}%',
                                 foreground = colors[1],
                                  padding = 6, 
-                                 mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
-                                 format = '{MemUsed: .0f}{mm}',
-                                 fmt = '🖥  Mem: {} used',
                                  ),
-                        widget.Sep( 
-                            foreground = colors[1],
-                            background=colors[9],
-                                   ),
+                            widget.Sep( 
+                                foreground = colors[1],
+                                background=colors[9],
+                                       ),
+                            widget.Memory(
+                                    background=colors[9],
+                                    foreground = colors[1],
+                                     padding = 6, 
+                                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
+                                     format = '{MemUsed: .0f}{mm}',
+                                     fmt = '🖥  Mem: {} used',
+                                     ),
+                            widget.Sep( 
+                                foreground = colors[1],
+                                background=colors[9],
+                                       ),
 
-                        widget.DF(
+                            widget.DF(
 
                                 background=colors[9],
                                  update_interval = 60,
@@ -95,8 +96,6 @@ screens = [
                                  fmt = '🖴  Disk: {}',
                                  visible_on_warn = False,
                                  ),
-
-
                             ],
                         ),
                 widget.Prompt(
@@ -105,10 +104,18 @@ screens = [
                     padding=3,
                     ),
                 widget.WindowName(
-                    foreground = GruvboxDark[3],
+                    foreground = colors[4],
                     padding = 6,
                     max_chars = 40
                     ),
+                widget.GenPollText(
+                 update_interval = 300,
+                 func = lambda: subprocess.check_output("printf $(uname -r)", shell=True, text=True),
+                 foreground = colors[3],
+                 padding = 6,
+                 fmt = '❤  {}',
+                 ),
+
                 widget.Chord(
                     chords_colors={
                         "launch": ("#ff0000", "#ffffff"),
@@ -116,19 +123,10 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
 
-                widget.GenPollText(
-                    update_interval = 300,
-                    func = lambda: subprocess.check_output("printf $(uname -r)", shell=True, text=True),
-                    foreground = GruvboxDark[4],
-                    padding = 6,
-                    fmt = '❤  {}',
-                ),
-
-                
                 widget.KeyboardLayout(
                     configured_keyboards=['br'],
                     #background = colors[2],
-                    foreground = colors[6],
+                    foreground = colors[1],
                     padding = 6,
                     fmt = '⌨  Kbd: {}',
                 ),
@@ -138,7 +136,7 @@ screens = [
                         ),
                 widget.Volume(
                     #background = colors[2],
-                    foreground = colors[6],
+                    foreground = colors[1],
                     padding = 6,
                     fmt = '🕫  Vol: {}',
                     ),
@@ -148,7 +146,7 @@ screens = [
                         ),
                 widget.Clock(
                     #background = colors[2],
-                    foreground = colors[6],
+                    foreground = colors[1],
                     padding = 6, 
                     format = "⏱  %a, %b %d - %H:%M",
                  ),
@@ -157,21 +155,22 @@ screens = [
                         #background = colors[2]
                         ),
                     widget.Battery(
-                         format="{char} {percent:2.0%} ({hour:d}:{min:02d})",
-                    charge_char="",
-                    discharge_char=" ",
-                    full_char="",
-                    empty_char="",
-                    unknown_char="",
-                    update_interval=60,
-                    show_short_text=False,
-                    #background = colors[2],
-                    foreground=colors[6],
+                        format="{char} {percent:2.0%} ({hour:d}:{min:02d})",
+                        charge_char="",
+                        discharge_char=" ",
+                        full_char="",
+                        empty_char="",
+                        unknown_char="",
+                        update_interval=60,
+                        show_short_text=False,
+                        #background = colors[2],
+                        foreground=colors[1],
                     ),
 
 
                 widget.Systray(
                         padding = 4,
+                        foreground = colors[1],
                         #background=colors[2]
                         ),
 
@@ -187,12 +186,14 @@ screens = [
                     padding = 6
 
                     ),
-                widget.Spacer(length=6),
+                widget.Spacer(
+                        length=6,
+                        ),
                widget.Image(
                  filename = "~/.config/qtile/icons/on-off.png",
-                 scale = "False",
+                 scale = "True",
                  mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(power_menu_sh)},
-                 padding = 6,
+                 padding = 8,
                  ),
 
 
@@ -202,6 +203,7 @@ screens = [
                     ),
             ],
             24,
+
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),

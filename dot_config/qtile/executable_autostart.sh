@@ -1,5 +1,6 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
-picom --daemon &
 nm-applet &
-bluetooth-applet &
+sleep 1
+conky
+nitrogen --restore &

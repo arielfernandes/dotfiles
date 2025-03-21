@@ -44,6 +44,16 @@ fi
 # Força o reconhecimento do widget do fzf (adicione apenas se o erro persistir)
 zle -N fzf-history-widget
 
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH=$PATH:/opt/SimulIDE_1.1.0-SR1_Lin64/simulide
 
+
+eval $(dircolors ~/.dir_colors)
+eval $(dircolors ~/.dir_colors)
+
+alias ls="ls --color=auto"

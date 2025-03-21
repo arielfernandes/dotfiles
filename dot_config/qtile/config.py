@@ -1,14 +1,18 @@
+import os
+import subprocess
 from libqtile import layout, hook
 from libqtile.config import Click, Drag, Group, Key, Match
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 import pathlib
 
+
 from screens import *
 
 mod = "mod4"
 terminal = guess_terminal()
 personal_bin = str(pathlib.Path().home().joinpath(".bin"))
+
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -55,7 +59,7 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-    Key([mod], "d", lazy.spawn(f"rofi -show drun -show-icons"), desc="Spawn rofi launcher"),
+    Key([mod], "d", lazy.spawn(f"rofi -show drun -show-icons -theme gruvbox-dark-hard"), desc="Spawn rofi launcher"),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle full screen"),
     Key([mod, "control"], "x", lazy.spawn(f"sh {personal_bin}/lock.sh"), desc="Lock screen"),
     Key([mod, "control"], "p", lazy.spawn(f"sh {personal_bin}/power-menu.sh"), desc="Power menu screen"),
