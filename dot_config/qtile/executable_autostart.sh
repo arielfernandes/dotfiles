@@ -2,5 +2,6 @@
 
 nm-applet &
 sleep 1
-conky
+conky &
+emacs &
 nitrogen --restore &
