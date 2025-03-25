@@ -124,7 +124,7 @@ screens = [
                 ),
 
                 widget.KeyboardLayout(
-                    configured_keyboards=['br'],
+                    configured_keyboards=['br', 'us'],
                     #background = colors[2],
                     foreground = colors[1],
                     padding = 6,
