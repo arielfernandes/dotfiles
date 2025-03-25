@@ -6,6 +6,7 @@ source /usr/share/zsh-antidote/antidote.zsh
 source ~/.zsh/init.zsh
 source ~/.zsh/keys.zsh
 source ~/.zsh/zprofile
+source ~/.zsh/aliases.zsh
 
 
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
@@ -22,12 +23,6 @@ export FZF_DEFAULT_OPTS="
 
 # Use 'fd' para busca rápida
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-
-
-# Alias para Doom Emacs
-if [ -f "$HOME/.emacs.d/bin/doom" ]; then
-    alias doom="$HOME/.emacs.d/bin/doom"
-fi
 
 
 autoload -Uz compinit
@@ -55,5 +50,3 @@ export PATH=$PATH:/opt/SimulIDE_1.1.0-SR1_Lin64/simulide
 
 eval $(dircolors ~/.dir_colors)
 eval $(dircolors ~/.dir_colors)
-
-alias ls="ls --color=auto"

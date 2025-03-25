@@ -5,7 +5,7 @@ if ! command -v rofi &> /dev/null; then
     exit 1
 fi
 
-choice=$(echo -e "⏻ Desligar\n↻ Reiniciar\n⏸ Suspender\n⏹ Logoff\n❌ Cancelar" | rofi -dmenu -i -width 300 -lines 5 -p "Power Menu")
+choice=$(echo -e "⏻ Desligar\n↻ Reiniciar\n⏸ Suspender\n⏹ Logoff\n❌ Cancelar" | rofi -dmenu -i -width 300 -lines 5 -theme gruvbox-dark-hard -p "Power Menu")
 
 case "$choice" in
     "⏻ Desligar")
