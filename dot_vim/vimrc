@@ -1,0 +1,64 @@
+source ~/.vim/plugins.vim
+
+" Enable line numbers
+set number            " Shows line numbers
+
+" Enable syntax highlighting
+syntax enable         " Turn on syntax highlighting
+
+
+" appearance
+colorscheme base16-gruvbox-dark-hard
+let base16colorspace=256 " Access colors present in 256 colorspace
+set background=dark
+set termguicolors
+
+" Enable auto-indentation
+set smartindent       " Automatically indent based on syntax
+set tabstop=4         " Set tab width to 4 spaces
+set shiftwidth=4      " Set the width for auto-indent to 4 spaces
+set expandtab         " Convert tabs to spaces
+
+set fileformats=unix,mac,dos
+
+" Enable line wrapping
+set wrap              " Wrap lines that are too long
+
+" Enable search highlighting
+set hlsearch          " Highlight search results
+set incsearch         " Show search matches as you type
+
+" Enable line wrapping on search results
+set showmatch         " Show matching parentheses, brackets, and braces
+
+" Enable clipboard support (requires Vim with clipboard support)
+set clipboard=unnamedplus  " Use system clipboard for copy/paste
+
+" Enable line breaks for long lines of text
+set wrapscan          " Make search wrap around the end of the file
+
+" Display the line and column number in the status line
+set ruler             " Display line and column number in the status line
+
+" Highlight search results as you type
+set incsearch         " Show results as you type your search query
+
+" Set the default file encoding
+set encoding=utf-8    " Use UTF-8 encoding
+
+" Enable auto-completion for keywords
+set completeopt=menuone,longest,preview   " Configure completion options
+
+" Enable the use of a mouse (optional, can be disabled if not needed)
+set mouse=a           " Enable mouse support in all modes
+
+
+" Show invisible characters (tabs, spaces, etc.)
+set list              " Show invisible characters
+
+" Set search to be case-insensitive unless uppercase letters are used
+set ignorecase        " Ignore case in searches
+set smartcase         " Only search case-sensitively if the search term contains uppercase letters
+
+
+set shell=/bin/sh
