@@ -8,5 +8,4 @@ chriskempson/base16-shell
 zsh-users/zsh-history-substring-search
 docker/cli path:contrib/completion/zsh kind:fpath
 skywind3000/z.lua
-spaceship-prompt/spaceship-prompt
 
