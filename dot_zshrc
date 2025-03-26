@@ -8,6 +8,11 @@ source ~/.zsh/keys.zsh
 source ~/.zsh/zprofile
 source ~/.zsh/aliases.zsh
 
+eval "$(starship init zsh)"
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+
+
+#eval "$(starship init zsh)"
 
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 source ~/.zsh_plugins.zsh
@@ -38,6 +43,7 @@ fi
 
 # Força o reconhecimento do widget do fzf (adicione apenas se o erro persistir)
 zle -N fzf-history-widget
+
 
 
 export PYENV_ROOT="$HOME/.pyenv"
