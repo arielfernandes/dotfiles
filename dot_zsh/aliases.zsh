@@ -6,6 +6,11 @@ alias v='vim'
 
 
 
+#uv
+alias uvr='uv run'
+alias uvp='uv run python'
+
+
 #Chezmoi
 alias chz='chezmoi'
 
