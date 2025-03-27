@@ -1,7 +1,3 @@
-# If using transparency, make sure you add (background="#00000000") to 'Screen' line(s).
-# Then, you can use RGBA color codes to add transparency to the colors below.
-# For ex: colors = [["#282c34ee", "#282c34dd"], ...
-
 DoomOne = [
     ["#282c34", "#282c34"], # bg
     ["#bbc2cf", "#bbc2cf"], # fg
@@ -26,6 +22,31 @@ Dracula  = [
     ["#ff79c6", "#ff79c6"], # color06
     ["#9aedfe", "#9aedfe"], # color15
     ["#7d7d7d", "#7d7d7d"]  # color[9]
+    ]
+
+GruvboxHardDark = [
+    ["#282828","#282828"], # color[0]
+    ["#EBDBB2","#EBDBB2"], # color[1]
+    ["#000000","#000000"], # color[2]
+    ["#FB4934","#FB4934"], # color[3]
+    ["#98971A","#98971A"], # color[4]
+    ["#458588","#458588"], # color[5]
+    ["#928374","#928374"], # color[5]
+    ["#83A598","#83A598"], # color[6]
+    ["#B8BB26","#B8BB26"], # color[7]
+    ["#7d7d7d","#7d7d7d"], # color[8]
+    ["#d79921","#d79921"], # color[9]
+    ["#D3869B","#D3869B"], # color[10]
+    ["#8EC07C","#8EC07C"], # color[11]
+    ["#FABD2F","#FABD2F"], # color[12]
+    ["#FFFFFF","#FFFFFF"], # color[13]
+    ["#689D6A","#689D6A"], # color[14]
+    ["#EBDBB2","#EBDBB2"], # color[15]
+    ["#B16286","#B16286"], # color[16]
+    ["#CC241D","#CC241D"], # color[17]
+    ["#FFFFFF","#FFFFFF"], # color[18]
+    ["#A89984","#A89984"], # color[19]
+    ["#D79921","#D79921"]  # color[20]
     ]
 
 GruvboxDark  = [

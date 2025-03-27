@@ -1,11 +1,12 @@
 import webbrowser
 from libqtile import bar, widget, hook, qtile
 from libqtile.config import Screen
-from colors import GruvboxDark
+from colors import GruvboxDark, GruvboxHardDark
 import pathlib
 import subprocess
 
-colors = GruvboxDark
+#colors = GruvboxDark
+colors = GruvboxHardDark
 myTerm = "pcmanfm"
 personal_bin = str(pathlib.Path().home().joinpath(".bin"))
 power_menu_sh = f"sh {personal_bin}/power-menu.sh"
@@ -58,27 +59,26 @@ screens = [
                         close_button_location = 'right',
                         foreground = colors[9],
                         widgets = [
-                        
                             widget.Sep(),
                             widget.CPU(
                                 background=colors[9],
                                  format = ' Cpu: {load_percent}%',
                                 foreground = colors[1],
-                                 padding = 6, 
+                                 padding = 6,
                                  ),
-                            widget.Sep( 
+                            widget.Sep(
                                 foreground = colors[1],
                                 background=colors[9],
                                        ),
                             widget.Memory(
                                     background=colors[9],
                                     foreground = colors[1],
-                                     padding = 6, 
+                                     padding = 6,
                                      mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
                                      format = '{MemUsed: .0f}{mm}',
                                      fmt = '🖥  Mem: {} used',
                                      ),
-                            widget.Sep( 
+                            widget.Sep(
                                 foreground = colors[1],
                                 background=colors[9],
                                        ),
@@ -88,7 +88,7 @@ screens = [
                                 background=colors[9],
                                  update_interval = 60,
                                 foreground = colors[1],
-                                 padding = 6, 
+                                 padding = 6,
                                  mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e df')},
                                  partition = '/',
                                  #format = '[{p}] {uf}{m} ({r:.0f}%)',
@@ -111,10 +111,14 @@ screens = [
                 widget.GenPollText(
                  update_interval = 300,
                  func = lambda: subprocess.check_output("printf $(uname -r)", shell=True, text=True),
-                 foreground = colors[3],
+                 foreground = colors[9],
                  padding = 6,
-                 fmt = '❤  {}',
+                 fmt = ' {}',
                  ),
+                widget.Sep(
+                        padding=20,
+                        #background = colors[2]
+                        ),
 
                 widget.Chord(
                     chords_colors={
@@ -139,16 +143,17 @@ screens = [
                     foreground = colors[1],
                     padding = 6,
                     fmt = '🕫  Vol: {}',
+
                     ),
                 widget.Sep(
-                        padding=20, 
+                        padding=20,
                         #background = colors[2]
                         ),
                 widget.Clock(
                     #background = colors[2],
                     foreground = colors[1],
-                    padding = 6, 
-                    format = "⏱  %a, %b %d - %H:%M",
+                    padding = 6,
+                    format = "%a, %b %d - %H:%M",
                  ),
                 widget.Sep(
                         padding=20,
@@ -182,7 +187,7 @@ screens = [
                 widget.CurrentLayoutIcon(
                     foreground = GruvboxDark[1],
                     scale=0.8,
-                    background = colors[6],
+                    background = colors[7],
                     padding = 6
 
                     ),
@@ -198,7 +203,7 @@ screens = [
 
 
                 widget.Spacer(
-                    length = 6, 
+                    length = 6,
                     #background=colors[2]
                     ),
             ],
