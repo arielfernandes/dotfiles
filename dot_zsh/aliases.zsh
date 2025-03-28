@@ -10,6 +10,9 @@ alias v='vim'
 alias uvr='uv run'
 alias uvp='uv run python'
 
+#python
+alias pyignore='curl -fLo .gitignore https://www.toptal.com/developers/gitignore/api/python'
+
 
 #Chezmoi
 alias chz='chezmoi'
