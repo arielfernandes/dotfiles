@@ -4,8 +4,6 @@ alias ls='ls --color=auto'
 alias mkignore="~/.bin/curl_gitignore.sh "
 alias v='vim'
 
-
-
 #uv
 alias uvr='uv run'
 alias uvp='uv run python'
@@ -30,4 +28,9 @@ fi
 # Alias para Doom Emacs
 if [ -f "$HOME/.emacs.d/bin/doom" ]; then
     alias doom="$HOME/.emacs.d/bin/doom"
+fi
+
+
+if [ -f "/opt/HP_Prime_Virtual_Calculator-x86_64.AppImage" ]; then
+	alias HP_Prime="/opt/HP_Prime_Virtual_Calculator-x86_64.AppImage"
 fi
