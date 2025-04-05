@@ -90,12 +90,26 @@ screens = [
                                 foreground = colors[1],
                                  padding = 6,
                                  mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e df')},
+                                 partition = '/home/',
+                                 #format = '[{p}] {uf}{m} ({r:.0f}%)',
+                                 format = '{uf}{m} free',
+                                 fmt = '🖴  Home: {}',
+                                 visible_on_warn = False,
+                                 ),
+                            widget.DF(
+
+                                background=colors[9],
+                                 update_interval = 60,
+                                foreground = colors[1],
+                                 padding = 6,
+                                 mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e df')},
                                  partition = '/',
                                  #format = '[{p}] {uf}{m} ({r:.0f}%)',
                                  format = '{uf}{m} free',
                                  fmt = '🖴  Disk: {}',
                                  visible_on_warn = False,
                                  ),
+
                             ],
                         ),
                 widget.Prompt(

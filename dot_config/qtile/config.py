@@ -135,7 +135,7 @@ floating_layout = layout.Floating(
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
         Match(wm_class='yad'),  # Yad será flutuante
-        Match(wm_class='galculator'),
+        #Match(wm_class='qalculate-gtk'),
 
 
     ]
