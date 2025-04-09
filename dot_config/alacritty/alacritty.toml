@@ -70,7 +70,7 @@ persistent_logging = true
 render_timer = false
 
 [font]
-size = 12
+size = 14
 
 [font.bold]
 family = "Hack Nerd Font"
@@ -1000,7 +1000,7 @@ program = "/usr/bin/zsh"
 decorations = "full"
 dynamic_padding = false
 dynamic_title = true
-opacity = 0.9
+opacity = 1
 startup_mode = "Windowed"
 
 [window.dimensions]
