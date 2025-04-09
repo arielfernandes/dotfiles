@@ -1,7 +1,7 @@
 # ~/.zshrc
 
 # Carrega o Antidote
-source /usr/share/zsh-antidote/antidote.zsh
+source ~/.antidote/antidote.zsh
 
 source ~/.zsh/init.zsh
 source ~/.zsh/keys.zsh
@@ -56,3 +56,4 @@ export PATH=$PATH:/opt/SimulIDE_1.1.0-SR1_Lin64/simulide
 
 eval $(dircolors ~/.dir_colors)
 eval $(dircolors ~/.dir_colors)
+
