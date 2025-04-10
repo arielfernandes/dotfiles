@@ -53,6 +53,7 @@ precmd_functions+=(_tmux_autostart _fix_cursor)
 fpath=($HOME/.zsh/completions $fpath)
 
 autoload -Uz compinit
+compinit
 
 # navidate completion
 zstyle ':completion:*' menu select
