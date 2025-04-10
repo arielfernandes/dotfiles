@@ -22,7 +22,21 @@ bindkey "\e[3~" delete-char
 bindkey '^W' backward-kill-word
 bindkey '^ ' autosuggest-accept
 
-# Use apenas o fzf para ^r
+bindkey '^[[1;5C' emacs-forward-word
+bindkey '^[[1;5D' emacs-backward-word
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+bindkey "\e[1;2C" forward-word
+bindkey "\e[1;2D" backward-word
+
+bindkey "\e[1;6C" forward-word
+bindkey "\e[1;6D" backward-word
+
+bindkey "\e[1;4C" forward-word
+bindkey "\e[1;4D" backward-word
+
+
+
 
 
 # Widgets customizados
