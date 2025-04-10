@@ -31,3 +31,4 @@ zle -N fzf-history-widget
 
 eval $(dircolors ~/.dir_colors)
 eval $(dircolors ~/.dir_colors)
+
