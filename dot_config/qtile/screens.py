@@ -28,7 +28,7 @@ screens = [
 
                 widget.Spacer(length = 6),
                  widget.Image(
-                     filename = "~/.config/qtile/icons/fedora-icon.png",
+                     filename = "~/.config/qtile/icons/arch.png",
                      scale = "False",
                      mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)},
                      padding = 3,

@@ -64,6 +64,7 @@ keys = [
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle full screen"),
     Key([mod, "control"], "x", lazy.spawn(f"sh {personal_bin}/lock.sh"), desc="Lock screen"),
     Key([mod, "control"], "p", lazy.spawn(f"sh {personal_bin}/power-menu.sh"), desc="Power menu screen"),
+    Key([mod, "control"], "m", lazy.spawn(f"sh {personal_bin}/rofi-copy-command.sh"), desc="Spawn rofi copy screen"),
 
 
 ]
