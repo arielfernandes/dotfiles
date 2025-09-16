@@ -28,6 +28,7 @@
        (format +onsave)
        rotate-text
        snippets
+       word-wrap
 
        :emacs
        (undo +tree)
@@ -38,6 +39,7 @@
 
        :term
        eshell
+       vterm
 
        :checkers
        spell
