@@ -198,7 +198,7 @@ screens = [
                         length = 6,
                         #background=colors[2]
                         ),
-                widget.CurrentLayoutIcon(
+                widget.CurrentLayout(
                     foreground = GruvboxDark[1],
                     scale=0.8,
                     background = colors[7],
