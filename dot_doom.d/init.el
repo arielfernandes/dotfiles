@@ -8,7 +8,8 @@
        doom
        doom-quit
        hl-todo
-       modeline
+       indent-guides
+       ;; modeline
        nav-flash
        ophints
        doom-dashboard
@@ -82,7 +83,7 @@
        rest
        (rust +eglot)
        (sh +lsp)
-       (javascript +lsp +tree-sitter)
+       (javascript +lsp)
        (ledger)
        (php +lsp)
        ;;(nix)
