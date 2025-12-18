@@ -9,7 +9,7 @@
        doom-quit
        hl-todo
        indent-guides
-       ;; modeline
+       modeline
        nav-flash
        ophints
        doom-dashboard

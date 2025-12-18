@@ -16,11 +16,6 @@
 
 (setq org-hierarchical-todo-statistics nil)
 
-;; GC otimizado
-(setq gc-cons-threshold (* 100 1024 1024))
-(add-hook 'emacs-startup-hook
-          (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
-
 ;; recentf
 (setq recentf-max-saved-items 200)
 (setq recentf-save-file (expand-file-name "recentf" doom-cache-dir))
@@ -119,6 +114,8 @@
     (setq-local truncate-lines t)))
 
 (add-hook 'find-file-hook #'my/disable-heavy-features-in-large-files)
+
+(setq markdown-generated-files-dir "~/.emacs.d/.local/cache/markdown-preview/")
 
 ;; so-long-mode para arquivos com linhas longas
 (global-so-long-mode 1)
