@@ -1,6 +1,7 @@
 (doom! :completion
        (company
-        +auto +tng)
+        +auto
+        +tng)
        (ivy +fuzzy)
 
        :ui
@@ -53,8 +54,10 @@
        editorconfig
        (eval +overlay)
        (lookup
-        +docsets +dictionary)
-       (lsp)
+        +docsets
+        +dictionary)
+       (lsp
+        +peek)
        (magit +forge)
        make
        biblio
@@ -76,18 +79,26 @@
         +journal
         +gnuplot
         +pancoc
-        +dragndrop
-        +journal)
+        +dragndrop)
        plantuml
-       (python +pyenv +lsp +pyright)
+       (python
+        +pyenv
+        +lsp
+        +pyright)
        rest
        (rust +eglot)
        (sh +lsp)
-       (javascript +lsp)
+
+       ;; JavaScript / TypeScript / React
+       (javascript
+        +lsp
+        +tree-sitter)
+
        (ledger)
        (php +lsp)
-       ;;(nix)
-       ;;(java +lsp +tree-sitter)
+
+       ;; (nix)
+       ;; (java +lsp +tree-sitter)
 
        :email
        (notmuch +org)
@@ -97,4 +108,6 @@
        ;; irc
 
        :config
-       (default +bindings +smartparens))
+       (default
+        +bindings
+        +smartparens))
