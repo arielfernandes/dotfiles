@@ -31,6 +31,9 @@ if [ -f "$HOME/.emacs.d/bin/doom" ]; then
     alias doom="$HOME/.emacs.d/bin/doom"
 fi
 
+if [ -f "$HOME/.config/emacs/bin/doom" ]; then
+    alias doom="$HOME/.config/emacs/bin/doom"
+fi
 
 if [ -f "/opt/HP_Prime_Virtual_Calculator-x86_64.AppImage" ]; then
 	alias HP_Prime="/opt/HP_Prime_Virtual_Calculator-x86_64.AppImage"

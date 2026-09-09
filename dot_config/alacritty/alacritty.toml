@@ -70,10 +70,10 @@ persistent_logging = true
 render_timer = false
 
 [font]
-size = 14
+size = 12
 
 [font.bold]
-family = "Hack Nerd Font"
+family = "Hack"
 style = "Bold"
 
 [font.glyph_offset]
@@ -81,11 +81,11 @@ x = 0
 y = 0
 
 [font.italic]
-family = "Hack Nerd Font"
+family = "Hack"
 style = "Italic"
 
 [font.normal]
-family = "Hack Nerd Font"
+family = "Hack"
 
 [font.offset]
 x = 0
