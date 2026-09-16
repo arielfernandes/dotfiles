@@ -51,3 +51,6 @@ if [ -f "$HOME/Documents/scripts/cli_llm/cli_llm.py" ]; then
 	}
 fi
 
+alias copy_='xclip -selection clipboard'
+alias paste_='xclip -selection clipboard -o'
+
