@@ -1,0 +1,657 @@
+#!/usr/bin/env zsh
+
+# ============================================================
+# Docker Rofi
+# Gerenciador Docker totalmente dentro do Rofi
+# ============================================================
+
+set -u
+
+DOCKER="docker"
+ROFI="rofi"
+
+# ============================================================
+# Funções auxiliares
+# ============================================================
+
+notify() {
+    notify-send "Docker Rofi" "$1"
+}
+
+rofi_menu() {
+    "$ROFI" \
+        -dmenu \
+        -i \
+        -no-custom \
+        -markup-rows \
+        -theme gruvbox-dark-hard \
+        "$@"
+}
+
+# ============================================================
+# Verificação
+# ============================================================
+
+command -v "$DOCKER" >/dev/null 2>&1 || {
+    notify "Docker não encontrado."
+    exit 1
+}
+
+command -v "$ROFI" >/dev/null 2>&1 || {
+    notify "Rofi não encontrado."
+    exit 1
+}
+
+# ============================================================
+# Estado
+# ============================================================
+
+container_state() {
+    "$DOCKER" inspect \
+        -f '{{.State.Status}}' \
+        "$1" 2>/dev/null
+}
+
+# ============================================================
+# Ícone do estado
+# ============================================================
+
+state_icon() {
+    case "$1" in
+        running)
+            echo "🟢"
+            ;;
+        exited)
+            echo "🔴"
+            ;;
+        paused)
+            echo "🟠"
+            ;;
+        restarting)
+            echo "🟡"
+            ;;
+        created)
+            echo "🔵"
+            ;;
+        dead)
+            echo "⚫"
+            ;;
+        *)
+            echo "⚪"
+            ;;
+    esac
+}
+
+# ============================================================
+# Texto do estado
+# ============================================================
+
+state_text() {
+    case "$1" in
+        running)
+            echo "RUNNING"
+            ;;
+        exited)
+            echo "STOPPED"
+            ;;
+        paused)
+            echo "PAUSED"
+            ;;
+        restarting)
+            echo "RESTARTING"
+            ;;
+        created)
+            echo "CREATED"
+            ;;
+        dead)
+            echo "DEAD"
+            ;;
+        *)
+            echo "$1"
+            ;;
+    esac
+}
+
+# ============================================================
+# Healthcheck
+# ============================================================
+
+container_health() {
+
+    local health
+
+    health=$(
+        "$DOCKER" inspect \
+            -f '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' \
+            "$1" 2>/dev/null
+    )
+
+    case "$health" in
+        healthy)
+            echo "❤️ HEALTHY"
+            ;;
+        unhealthy)
+            echo "💔 UNHEALTHY"
+            ;;
+        starting)
+            echo "🟡 STARTING"
+            ;;
+        none)
+            echo "—"
+            ;;
+        *)
+            echo "$health"
+            ;;
+    esac
+}
+
+# ============================================================
+# IPs
+# ============================================================
+
+container_ips() {
+
+    "$DOCKER" inspect \
+        -f '{{range $name, $network := .NetworkSettings.Networks}}{{$name}}: {{$network.IPAddress}}{{"\n"}}{{end}}' \
+        "$1" 2>/dev/null |
+        sed '/: $/d' |
+        tr '\n' ' '
+}
+
+# ============================================================
+# Uptime / status original
+# ============================================================
+
+container_status() {
+
+    "$DOCKER" inspect \
+        -f '{{.State.Status}} - {{.State.StartedAt}}' \
+        "$1" 2>/dev/null
+}
+
+# ============================================================
+# Resumo dos containers
+# ============================================================
+
+container_summary() {
+
+    "$DOCKER" ps -a \
+        --format '{{.Names}}'
+}
+
+# ============================================================
+# Tela principal
+# ============================================================
+
+main_menu() {
+
+    local output=""
+    local name
+    local state
+    local icon
+    local image
+    local ports
+    local ips
+    local health
+
+    while IFS= read -r name; do
+
+        [[ -z "$name" ]] && continue
+
+        state=$(container_state "$name")
+        icon=$(state_icon "$state")
+        image=$(
+            "$DOCKER" inspect \
+                -f '{{.Config.Image}}' \
+                "$name" 2>/dev/null
+        )
+
+        ports=$(
+            "$DOCKER" port "$name" 2>/dev/null |
+            tr '\n' ' '
+        )
+
+        [[ -z "$ports" ]] && ports="—"
+
+        ips=$(container_ips "$name")
+
+        [[ -z "$ips" ]] && ips="—"
+
+        health=$(container_health "$name")
+
+        output+="<b>${icon}  ${name}</b>\n"
+        output+="    <span foreground='#8be9fd'>🌐 ${ips}</span>\n"
+        output+="    <span foreground='#bd93f9'>📦 ${image}</span>\n"
+        output+="    <span foreground='#f1fa8c'>🔌 ${ports}</span>  ${health}\n"
+        output+="\n"
+
+    done < <(container_summary)
+
+    if [[ -z "$output" ]]; then
+
+        notify "Nenhum container encontrado."
+        exit 0
+
+    fi
+
+    local selected
+
+    selected=$(
+        printf '%b' "$output" |
+        rofi_menu \
+            -p "Docker" \
+            -mesg "Selecione um container"
+    )
+
+    [[ -z "$selected" ]] && exit 0
+
+    # Primeiro nome encontrado na linha selecionada.
+    name=$(
+        printf '%s\n' "$selected" |
+        sed -E 's/<[^>]+>//g' |
+        sed -E 's/^[^[:alnum:]_.-]*//' |
+        awk '{print $1}'
+    )
+
+    [[ -z "$name" ]] && return
+
+    container_menu "$name"
+}
+
+# ============================================================
+# Tela do container
+# ============================================================
+
+container_menu() {
+
+    local name="$1"
+    local state
+    local icon
+    local state_label
+    local image
+    local ips
+    local ports
+    local health
+    local created
+    local started
+    local action
+
+    state=$(container_state "$name")
+
+    [[ -z "$state" ]] && {
+        notify "Container não encontrado: $name"
+        return
+    }
+
+    icon=$(state_icon "$state")
+    state_label=$(state_text "$state")
+
+    image=$(
+        "$DOCKER" inspect \
+            -f '{{.Config.Image}}' \
+            "$name"
+    )
+
+    ips=$(container_ips "$name")
+    [[ -z "$ips" ]] && ips="—"
+
+    ports=$(
+        "$DOCKER" port "$name" 2>/dev/null |
+        tr '\n' ' '
+    )
+
+    [[ -z "$ports" ]] && ports="—"
+
+    health=$(container_health "$name")
+
+    created=$(
+        "$DOCKER" inspect \
+            -f '{{.Created}}' \
+            "$name"
+    )
+
+    started=$(
+        "$DOCKER" inspect \
+            -f '{{.State.StartedAt}}' \
+            "$name"
+    )
+
+    local info
+
+    info="<b>${icon}  ${name}</b>\n\n"
+    info+="<span foreground='#f8f8f2'>Estado:</span>     ${state_label}\n"
+    info+="<span foreground='#f8f8f2'>Imagem:</span>     ${image}\n"
+    info+="<span foreground='#f8f8f2'>IP:</span>         ${ips}\n"
+    info+="<span foreground='#f8f8f2'>Portas:</span>     ${ports}\n"
+    info+="<span foreground='#f8f8f2'>Health:</span>     ${health}\n"
+    info+="<span foreground='#f8f8f2'>Criado:</span>     ${created}\n"
+
+    if [[ "$state" == "running" ]]; then
+        info+="<span foreground='#f8f8f2'>Iniciado:</span>   ${started}\n"
+    fi
+
+    info+="\n──────────────────────────────\n"
+
+    if [[ "$state" == "running" ]]; then
+
+        action=$(
+            printf '%s\n' \
+                "⏹  Parar" \
+                "🔄 Reiniciar" \
+                "📋 Logs" \
+                "📊 Estatísticas" \
+                "🔍 Detalhes" \
+                "🌐 Redes" \
+                "📦 Volumes" \
+                "🗑  Remover" \
+                "← Voltar" |
+            rofi_menu \
+                -p "$name" \
+                -mesg "$info"
+        )
+
+    else
+
+        action=$(
+            printf '%s\n' \
+                "▶  Iniciar" \
+                "📋 Logs" \
+                "🔍 Detalhes" \
+                "🌐 Redes" \
+                "📦 Volumes" \
+                "🗑  Remover" \
+                "← Voltar" |
+            rofi_menu \
+                -p "$name" \
+                -mesg "$info"
+        )
+
+    fi
+
+    [[ -z "$action" ]] && return
+
+    case "$action" in
+
+        "⏹  Parar")
+
+            if "$DOCKER" stop "$name" >/dev/null 2>&1; then
+                notify "🛑 $name parado."
+            else
+                notify "Erro ao parar $name."
+            fi
+
+            main_menu
+            ;;
+
+        "▶  Iniciar")
+
+            if "$DOCKER" start "$name" >/dev/null 2>&1; then
+                notify "🟢 $name iniciado."
+            else
+                notify "Erro ao iniciar $name."
+            fi
+
+            main_menu
+            ;;
+
+        "🔄 Reiniciar")
+
+            if "$DOCKER" restart "$name" >/dev/null 2>&1; then
+                notify "🔄 $name reiniciado."
+            else
+                notify "Erro ao reiniciar $name."
+            fi
+
+            main_menu
+            ;;
+
+        "📋 Logs")
+
+            logs_menu "$name"
+            ;;
+
+        "📊 Estatísticas")
+
+            stats_menu "$name"
+            ;;
+
+        "🔍 Detalhes")
+
+            inspect_menu "$name"
+            ;;
+
+        "🌐 Redes")
+
+            networks_menu "$name"
+            ;;
+
+        "📦 Volumes")
+
+            volumes_menu "$name"
+            ;;
+
+        "🗑  Remover")
+
+            remove_menu "$name"
+            ;;
+
+        "← Voltar")
+
+            main_menu
+            ;;
+
+    esac
+}
+
+# ============================================================
+# Logs
+# ============================================================
+
+logs_menu() {
+
+    local name="$1"
+    local logs
+
+    logs=$(
+        "$DOCKER" logs \
+            --tail 300 \
+            "$name" 2>&1
+    )
+
+    [[ -z "$logs" ]] && logs="Nenhum log disponível."
+
+    "$ROFI" \
+        -dmenu \
+        -i \
+        -no-custom \
+        -markup-rows \
+        -p "Logs" \
+        -mesg "📋 ${name} — últimos 300 logs" \
+        <<< "$logs"
+
+    container_menu "$name"
+}
+
+# ============================================================
+# Stats
+# ============================================================
+
+stats_menu() {
+
+    local name="$1"
+    local stats
+
+    stats=$(
+        "$DOCKER" stats \
+            --no-stream \
+            --format \
+            'CPU: {{.CPUPerc}}
+RAM: {{.MemUsage}}
+RAM %: {{.MemPerc}}
+NET RX: {{.NetIO}}
+BLOCK I/O: {{.BlockIO}}
+PIDS: {{.PIDs}}' \
+            "$name" 2>/dev/null
+    )
+
+    [[ -z "$stats" ]] && stats="Estatísticas indisponíveis."
+
+    "$ROFI" \
+        -dmenu \
+        -i \
+        -no-custom \
+        -markup-rows \
+        -p "Stats" \
+        -mesg "📊 ${name}" \
+        <<< "$stats"
+
+    container_menu "$name"
+}
+
+# ============================================================
+# Inspect
+# ============================================================
+
+inspect_menu() {
+
+    local name="$1"
+    local details
+
+    details=$(
+        "$DOCKER" inspect \
+            -f '
+ID:       {{.Id}}
+Nome:     {{.Name}}
+Imagem:   {{.Config.Image}}
+Estado:   {{.State.Status}}
+PID:      {{.State.Pid}}
+Criado:   {{.Created}}
+Início:   {{.State.StartedAt}}
+Fim:      {{.State.FinishedAt}}
+Código:   {{.State.ExitCode}}
+Restarts: {{.RestartCount}}
+' \
+            "$name"
+    )
+
+    "$ROFI" \
+        -dmenu \
+        -i \
+        -no-custom \
+        -markup-rows \
+        -p "Detalhes" \
+        -mesg "🔍 ${name}" \
+        <<< "$details"
+
+    container_menu "$name"
+}
+
+# ============================================================
+# Redes
+# ============================================================
+
+networks_menu() {
+
+    local name="$1"
+    local networks
+
+    networks=$(
+        "$DOCKER" inspect \
+            -f '{{range $name, $network := .NetworkSettings.Networks}}REDE: {{$name}}
+IP: {{$network.IPAddress}}
+Gateway: {{$network.Gateway}}
+MAC: {{$network.MacAddress}}
+
+{{end}}' \
+            "$name"
+    )
+
+    [[ -z "$networks" ]] && networks="Nenhuma rede encontrada."
+
+    "$ROFI" \
+        -dmenu \
+        -i \
+        -no-custom \
+        -markup-rows \
+        -p "Redes" \
+        -mesg "🌐 ${name}" \
+        <<< "$networks"
+
+    container_menu "$name"
+}
+
+# ============================================================
+# Volumes
+# ============================================================
+
+volumes_menu() {
+
+    local name="$1"
+    local volumes
+
+    volumes=$(
+        "$DOCKER" inspect \
+            -f '{{range .Mounts}}TIPO: {{.Type}}
+ORIGEM: {{.Source}}
+DESTINO: {{.Destination}}
+MODO: {{.Mode}}
+
+{{end}}' \
+            "$name"
+    )
+
+    [[ -z "$volumes" ]] && volumes="Nenhum volume encontrado."
+
+    "$ROFI" \
+        -dmenu \
+        -i \
+        -no-custom \
+        -markup-rows \
+        -p "Volumes" \
+        -mesg "📦 ${name}" \
+        <<< "$volumes"
+
+    container_menu "$name"
+}
+
+# ============================================================
+# Remover
+# ============================================================
+
+remove_menu() {
+
+    local name="$1"
+    local confirm
+
+    confirm=$(
+        printf '%s\n' \
+            "❌ Cancelar" \
+            "🗑  SIM, REMOVER $name" |
+        rofi_menu \
+            -p "Remover" \
+            -mesg "⚠️ Essa ação não pode ser desfeita."
+    )
+
+    [[ "$confirm" != "🗑  SIM, REMOVER $name" ]] && {
+        container_menu "$name"
+        return
+    }
+
+    if "$DOCKER" rm "$name" >/dev/null 2>&1; then
+
+        notify "🗑 $name removido."
+        main_menu
+
+    else
+
+        notify "Não foi possível remover $name."
+        container_menu "$name"
+
+    fi
+}
+
+# ============================================================
+# Início
+# ============================================================
+
+main_menu
