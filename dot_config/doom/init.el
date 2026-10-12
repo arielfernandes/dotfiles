@@ -56,6 +56,7 @@
        (lookup
         +docsets
         +dictionary)
+       (tree-sitter)
        (lsp
         +peek)
        (magit +forge)
@@ -91,8 +92,7 @@
 
        ;; JavaScript / TypeScript / React
        (javascript
-        +lsp
-        +tree-sitter)
+        +lsp)
 
        (ledger)
        (php +lsp)
