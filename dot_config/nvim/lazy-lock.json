@@ -1,0 +1,11 @@
+{
+  "base16-vim": { "branch": "master", "commit": "3be3cd82cd31acfcab9a41bad853d9c68d30478d" },
+  "fzf": { "branch": "master", "commit": "c0a193e031f01fb50bf6f7be4381990a3753f7cf" },
+  "fzf.vim": { "branch": "master", "commit": "023de3c0e158ff9c2b0992175af10be97c2f2158" },
+  "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
+  "nerdtree": { "branch": "master", "commit": "690d061b591525890f1471c6675bcb5bdc8cdff9" },
+  "vim-airline": { "branch": "master", "commit": "ae24f4aca06731d5d7224df1fc5415975331b214" },
+  "vim-airline-themes": { "branch": "master", "commit": "77aab8c6cf7179ddb8a05741da7e358a86b2c3ab" },
+  "vim-fugitive": { "branch": "master", "commit": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0" },
+  "vim-sensible": { "branch": "master", "commit": "0ce2d843d6f588bb0c8c7eec6449171615dc56d9" }
+}
