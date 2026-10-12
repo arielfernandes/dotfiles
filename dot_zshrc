@@ -14,6 +14,9 @@ eval "$(starship init zsh)"
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 source ~/.zsh_plugins.zsh
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
 if [ -f "$HOME/zsh_plugins.txt" ]; then
   while IFS= read -r plugin; do
     if [[ ! "$plugin" =~ ^# ]]; then
@@ -22,9 +25,8 @@ if [ -f "$HOME/zsh_plugins.txt" ]; then
   done < "$HOME/zsh_plugins.txt"
 fi
 
-# fzf
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+# Força o reconhecimento do widget do fzf (adicione apenas se o erro persistir)
+zle -N fzf-history-widget
 
 if [ -f "$HOME/.dir_colors" ]; then
     eval $(dircolors ~/.dir_colors)
@@ -38,6 +40,3 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 export GEMINI_API_KEY=
 export PICO_SDK_PATH="$HOME/projetos/pico/pico-sdk"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

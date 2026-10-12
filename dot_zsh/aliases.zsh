@@ -10,7 +10,7 @@ alias uvp='uv run python'
 
 #python
 alias pyignore='curl -fLo .gitignore https://www.toptal.com/developers/gitignore/api/python'
-
+alias master="$HOME/Documents/College/mestrado-ufsc"
 
 #Chezmoi
 alias chz='chezmoi'
@@ -50,7 +50,4 @@ if [ -f "$HOME/Documents/scripts/cli_llm/cli_llm.py" ]; then
 	  (cd "$HOME/Documents/scripts/cli_llm" && uv run python cli_llm.py "$@")
 	}
 fi
-
-alias copy_='xclip -selection clipboard'
-alias paste_='xclip -selection clipboard -o'
 
