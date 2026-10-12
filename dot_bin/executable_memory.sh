@@ -8,7 +8,7 @@ MEMORY_TOTAL=$(free -h | grep Mem | awk '{print $2}')
 MEMORY_PERCENT=$(free | grep Mem | awk '{print $3/$2 * 100.0}' | awk '{printf "%.0f", $1}')
 
 # Definir a cor padrão (verde)
-COLOR="#A3BE8C"
+COLOR="#A3BE7C"
 
 # Verificar o nível de uso de memória e ajustar a cor
 if [ $MEMORY_PERCENT -ge 90 ]; then

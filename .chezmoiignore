@@ -1,0 +1,21 @@
+# Machine-specific configs
+.config/i3/*
+.config/picom.conf
+.config/nvim/init.vim
+
+# Doom Emacs - build artifacts, caches, node_modules
+.config/doom/node_modules/
+.config/doom/.local/
+.config/doom/.cache/
+.config/doom/build.log
+.config/doom/doom.lock
+
+# Neovim - lazy.nvim
+.config/nvim/lazy-lock.json
+.config/nvim/lazy/
+
+# General
+*.swp
+*.swo
+*~
+.DS_Store
