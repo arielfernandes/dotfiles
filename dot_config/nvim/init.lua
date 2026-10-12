@@ -11,7 +11,10 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- 3. Carrega specs de plugins
+-- 3. PATH do Mason (para linters/formatters instalados pelo Mason)
+vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
+
+-- 4. Carrega specs de plugins
 require("lazy").setup("plugins", {
   change_detection = { notify = false },
   performance = {
