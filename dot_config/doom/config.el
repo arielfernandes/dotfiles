@@ -80,3 +80,19 @@
      (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript"
               "master"
               "tsx/src"))))
+
+;; --- Claude Code ---
+(use-package! claude-code-ide
+  :commands (claude-code-ide claude-code-ide-menu)
+  :init
+  (map! :leader
+        (:prefix ("o c" . "Claude Code")
+         :desc "Menu"               "c" #'claude-code-ide-menu
+         :desc "Iniciar/alternar"   "o" #'claude-code-ide
+         :desc "Enviar prompt"      "p" #'claude-code-ide-send-prompt
+         :desc "Continuar sessão"   "r" #'claude-code-ide-resume))
+  :config
+  (setq claude-code-ide-cli-path (expand-file-name "~/.local/bin/claude")
+        claude-code-ide-terminal-backend 'vterm
+        claude-code-ide-use-ide-diff t)
+  (claude-code-ide-emacs-tools-setup))

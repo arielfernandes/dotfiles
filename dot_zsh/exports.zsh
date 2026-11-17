@@ -22,3 +22,7 @@ fi
 if [ -f /opt/SimulIDE_1.1.0-SR1_Lin64/simulide ]; then
     export PATH=$PATH:/opt/SimulIDE_1.1.0-SR1_Lin64/simulide
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+

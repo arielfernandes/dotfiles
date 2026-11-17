@@ -7,10 +7,10 @@ tmpbg='/tmp/screen.png'
 scrot "$tmpbg"
 
 # blur the screenshot (pixelate: shrink 20% then scale back 500%)
-magick "$tmpbg" -filter Gaussian -thumbnail 20% -sample 500% "$tmpbg"
+convert "$tmpbg" -filter Gaussian -thumbnail 20% -sample 500% "$tmpbg"
 
 # lock the screen with the blurred screenshot
-i3lock -i "$tmpbg"
+i3lock -n -i "$tmpbg"
 
 # remove the temporary screenshot file
-rm "$tmpbg"
+rm -f "$tmpbg"

@@ -14,8 +14,12 @@ eval "$(starship init zsh)"
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 source ~/.zsh_plugins.zsh
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+if [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]; then
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+    source /usr/share/doc/fzf/examples/completion.zsh
+elif [ -f ~/.fzf.zsh ]; then
+    source ~/.fzf.zsh
+fi
 
 if [ -f "$HOME/zsh_plugins.txt" ]; then
   while IFS= read -r plugin; do
