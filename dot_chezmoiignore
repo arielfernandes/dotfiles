@@ -1,5 +1,0 @@
-
-# Machine-specific configs
-.config/i3/*
-.config/picom.conf
-.config/nvim/init.vim
