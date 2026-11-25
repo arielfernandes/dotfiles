@@ -1,0 +1,4 @@
+#!/bin/sh
+# Rebuild the font cache when the fonts in .chezmoiexternal.toml change.
+# .chezmoiexternal.toml hash: {{ include ".chezmoiexternal.toml" | sha256sum }}
+fc-cache -f "$HOME/.local/share/fonts" >/dev/null

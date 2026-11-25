@@ -115,7 +115,7 @@
   (claude-code-ide-emacs-tools-setup))
 
 ;; --- Debug TS/TSX (dape + js-debug) ---
-;; Adapter lives in ~/.config/doom/debug-adapters/js-debug (install on each machine)
+;; Adapter lives in ~/.config/doom/debug-adapters/js-debug (downloaded by chezmoi, see .chezmoiexternal.toml)
 ;; SPC d commands that dape does not autoload (gave "commandp" errors before it loaded)
 (dolist (cmd '(dape-breakpoint-toggle dape-breakpoint-remove-all
                dape-breakpoint-log dape-breakpoint-expression dape-breakpoint-hits

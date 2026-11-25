@@ -1,0 +1,18 @@
+# Dependencies downloaded by `chezmoi apply` (not stored in the repo).
+# Versions are pinned: to upgrade, change the version in the URL and run
+# `chezmoi apply` (or `chezmoi -R apply` to force a re-download).
+
+# Font used by Doom Emacs (doom-font in .config/doom/config.el).
+# Without it, Doom fails to create GUI frames ("doom-font-error").
+[".local/share/fonts/HackNerdFont"]
+    type = "archive"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/Hack.tar.xz"
+    exact = true
+
+# js-debug adapter for dape (TS/TSX debugging in Doom Emacs).
+# Doom's debugger module sets dape-adapter-dir to ~/.config/doom/debug-adapters/.
+[".config/doom/debug-adapters/js-debug"]
+    type = "archive"
+    url = "https://github.com/microsoft/vscode-js-debug/releases/download/v1.140.1/js-debug-dap-v1.140.1.tar.gz"
+    stripComponents = 1
+    exact = true
