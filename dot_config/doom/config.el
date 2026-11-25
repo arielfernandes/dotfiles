@@ -104,12 +104,31 @@
   (map! :leader
         (:prefix ("o c" . "Claude Code")
          :desc "Menu"               "c" #'claude-code-ide-menu
-         :desc "Iniciar/alternar"   "o" #'claude-code-ide
-         :desc "Enviar prompt"      "p" #'claude-code-ide-send-prompt
-         :desc "Continuar sessão"   "r" #'claude-code-ide-resume))
+         :desc "Start/toggle"       "o" #'claude-code-ide
+         :desc "Send prompt"        "p" #'claude-code-ide-send-prompt
+         :desc "Resume session"     "r" #'claude-code-ide-resume))
   :config
   (setq claude-code-ide-cli-path (or (executable-find "claude")
                                       (expand-file-name "~/.local/bin/claude"))
         claude-code-ide-terminal-backend 'vterm
         claude-code-ide-use-ide-diff t)
   (claude-code-ide-emacs-tools-setup))
+
+;; --- Debug TS/TSX (dape + js-debug) ---
+;; Adapter lives in ~/.config/doom/debug-adapters/js-debug (install on each machine)
+;; SPC d commands that dape does not autoload (gave "commandp" errors before it loaded)
+(dolist (cmd '(dape-breakpoint-toggle dape-breakpoint-remove-all
+               dape-breakpoint-log dape-breakpoint-expression dape-breakpoint-hits
+               dape-info dape-repl dape-memory dape-disassemble
+               dape-pause dape-continue dape-next dape-step-in dape-step-out
+               dape-restart dape-select-thread dape-select-stack
+               dape-stack-select-down dape-stack-select-up
+               dape-evaluate-expression dape-watch-dwim
+               dape-disconnect-quit dape-quit))
+  (unless (fboundp cmd)
+    (autoload cmd "dape" nil t)))
+
+(after! dape
+  (dolist (name '(js-debug-tsx js-debug-ts-node js-debug-node-attach js-debug-chrome))
+    (when-let ((cfg (alist-get name dape-configs)))
+      (plist-put cfg 'modes (append (plist-get cfg 'modes) '(tsx-ts-mode))))))

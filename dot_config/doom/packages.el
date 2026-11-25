@@ -54,6 +54,6 @@
 
 (package! rainbow-delimiters)
 
-;; Claude Code integrado ao Emacs (usa o CLI `claude` com login)
+;; Claude Code integrated into Emacs (uses the logged-in `claude` CLI)
 (package! claude-code-ide
   :recipe (:host github :repo "manzaltu/claude-code-ide.el"))
