@@ -21,6 +21,8 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
+
+(setq doom-font (font-spec :family "Hack Nerd Font" :size 15))
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 ;;
@@ -73,6 +75,9 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
 (setq treesit-language-source-alist
   '((typescript . ("https://github.com/tree-sitter/tree-sitter-typescript"
                     "master"
@@ -80,6 +85,17 @@
      (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript"
               "master"
               "tsx/src"))))
+
+(after! lsp-cmake
+  (setq lsp-cmake-server-command
+    (or (executable-find "cmake-language-server")
+        (expand-file-name "~/.local/bin/cmake-language-server"))))
+
+(after! lsp-clangd
+  (add-to-list 'lsp-clients-clangd-args
+    (concat "--query-driver="
+      (expand-file-name "~/.espressif/tools/")
+      "**/*-elf-*")))
 
 ;; --- Claude Code ---
 (use-package! claude-code-ide
@@ -92,7 +108,8 @@
          :desc "Enviar prompt"      "p" #'claude-code-ide-send-prompt
          :desc "Continuar sessão"   "r" #'claude-code-ide-resume))
   :config
-  (setq claude-code-ide-cli-path (expand-file-name "~/.local/bin/claude")
+  (setq claude-code-ide-cli-path (or (executable-find "claude")
+                                      (expand-file-name "~/.local/bin/claude"))
         claude-code-ide-terminal-backend 'vterm
         claude-code-ide-use-ide-diff t)
   (claude-code-ide-emacs-tools-setup))

@@ -14,3 +14,8 @@
 *.swo
 *~
 .DS_Store
+
+# Skill criptografada (age) - nao aplicar nesta maquina
+{{ if eq .chezmoi.hostname "archlinux" }}
+.claude/skills/pw-task
+{{ end }}

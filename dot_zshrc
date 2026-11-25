@@ -44,3 +44,5 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 export GEMINI_API_KEY=
 export PICO_SDK_PATH="$HOME/projetos/pico/pico-sdk"
 
+
+command -v direnv >/dev/null && eval "$(direnv hook zsh)"

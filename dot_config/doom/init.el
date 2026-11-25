@@ -1,114 +1,111 @@
 (doom! :completion
-  (company
-    +auto
-    +tng
-    )
-  (ivy +fuzzy)
+       (company
+        +tng)
+       (ivy +fuzzy)
 
-  :ui
-  deft
-  doom
-  doom-quit
-  hl-todo
-  indent-guides
-  modeline
-  nav-flash
-  ophints
-  doom-dashboard
-  (popup
-    +all
-    +defaults)
-  vc-gutter
-  vi-tilde-fringe
-  window-select
-  workspaces
-  zen
-  (treemacs +lsp)
+       :ui
+       deft
+       doom
+       doom-quit
+       hl-todo
+       indent-guides
+       modeline
+       nav-flash
+       ophints
+       dashboard
+       (popup
+        +all
+        +defaults)
+       vc-gutter
+       vi-tilde-fringe
+       window-select
+       workspaces
+       zen
+       (treemacs +lsp)
 
-  :editor
-  (evil +everywhere)
-  file-templates
-  (format +onsave)
-  rotate-text
-  snippets
-  word-wrap
+       :editor
+       (evil +everywhere)
+       file-templates
+       (format +onsave)
+       rotate-text
+       snippets
+       word-wrap
 
-  :emacs
-  (undo +tree)
-  dired
-  electric
-  ibuffer
-  vc
+       :emacs
+       (undo +tree)
+       dired
+       electric
+       ibuffer
+       vc
 
-  :term
-  eshell
-  vterm
+       :term
+       eshell
+       vterm
 
-  :checkers
-  spell
-  grammar
-  syntax
+       :checkers
+       spell
+       grammar
+       syntax
 
-  :tools
-  debugger
-  (docker +lsp)
-  editorconfig
-  (eval +overlay)
-  (lookup
-    +docsets
-    +dictionary)
-  (tree-sitter)
-  (lsp
-    +peek)
-  (magit +forge)
-  make
-  biblio
-  terraform
-  direnv
-  (delimiters +rainbow)
+       :tools
+       debugger
+       (docker +lsp)
+       editorconfig
+       (eval +overlay)
+       (lookup
+        +docsets
+        +dictionary)
+       (tree-sitter)
+       (lsp
+        +peek)
+       (magit +forge)
+       make
+       biblio
+       terraform
+       direnv
 
-  :lang
-  (cc +lsp)
-  (yaml +lsp)
-  data
-  emacs-lisp
-  (go +lsp)
-  latex
-  markdown
-  (org
-    +roam2
-    +hugo
-    +journal
-    +gnuplot
-    +pancoc
-    +dragndrop)
-  plantuml
-  (python
-    +pyenv
-    +lsp
-    +pyright)
-  rest
-  (rust +eglot)
-  (sh +lsp)
+       :lang
+       (cc +lsp)
+       (yaml +lsp)
+       data
+       emacs-lisp
+       (go +lsp)
+       latex
+       markdown
+       (org
+        +roam2
+        +hugo
+        +journal
+        +gnuplot
+        +pandoc
+        +dragndrop)
+       plantuml
+       (python
+        +pyenv
+        +lsp
+        +pyright)
+       rest
+       (rust +eglot)
+       (sh +lsp)
 
-  ;; JavaScript / TypeScript / React
-  (javascript
-    +lsp)
+       ;; JavaScript / TypeScript / React
+       (javascript
+        +lsp)
 
-  (ledger)
-  (php +lsp)
+       (ledger)
+       (php +lsp)
 
-  ;; (nix)
-  ;; (java +lsp +tree-sitter)
+       ;; (nix)
+       ;; (java +lsp +tree-sitter)
 
-  :email
-  (notmuch +org)
+       :email
+       (notmuch +org)
 
-  :app
-  (rss +org)
-  ;; irc
+       :app
+       (rss +org)
+       ;; irc
 
-  :config
-  (default
-    +bindings
-    +smartparens))
+       :config
+       (default
+        +bindings
+        +smartparens))
